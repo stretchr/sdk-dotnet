@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Text;
 using System.Threading;
 using Newtonsoft.Json;
 
@@ -32,7 +33,7 @@ namespace Stretchr
         public T MakeRequest<T>(Request request) where T : Response
         {
             // prepare the request
-            WebRequest req = WebRequest.Create(request.Url);
+            var req = (HttpWebRequest) WebRequest.Create(request.Url);
             req.Method = request.HttpMethod.Method;
             req.ContentType = "application/json";
             req.Headers["X-Stretchr-SDK"] = _version;
@@ -45,7 +46,7 @@ namespace Stretchr
                 // setup the request body
                 req.BeginGetRequestStream(cb =>
                 {
-                    var aReq = cb.AsyncState as WebRequest;
+                    var aReq = cb.AsyncState as HttpWebRequest;
                     if (aReq == null)
                     {
                         throw new ArgumentNullException("request");
@@ -54,6 +55,10 @@ namespace Stretchr
                     requestWaiter.Set();
                 }, req);
                 requestWaiter.WaitOne();
+
+                var encoding = new UTF8Encoding();
+                Byte[] byteArray = encoding.GetBytes(JsonConvert.SerializeObject(request.DataObject));
+                requestStream.Write(byteArray, 0, byteArray.Length);
                 _jsonSerializer.Serialize(new StreamWriter(requestStream), request.DataObject);
             }
 

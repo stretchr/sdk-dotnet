@@ -64,7 +64,7 @@ namespace Stretchr.Tests
             // aggregation
             request = new RequestBuilder(_testClient, "people/1/books");
             Assert.AreEqual(request, request.WithAggregation("group(field).count()"));
-            Assert.True(request.PathAndParams().Contains("agg=group(field).count()"));
+            Assert.True(request.PathAndParams().Contains("agg=group%28field%29.count%28%29"));
         }
 
         [Test]
@@ -414,7 +414,7 @@ namespace Stretchr.Tests
             _fakeTransport.Responses.Enqueue(new ChangesResponse());
             ChangesResponse response = rb.Update(obj);
             Request request = _fakeTransport.Requests.Dequeue();
-            var patch = new HttpMethod("PATCH").ToString();
+            string patch = new HttpMethod("PATCH").ToString();
             Assert.AreEqual(patch, request.HttpMethod.ToString());
             Assert.AreEqual(_testClient.UrlBase() + "people/1/books?key=abc123", request.Url);
             Assert.AreEqual(obj, request.DataObject);
