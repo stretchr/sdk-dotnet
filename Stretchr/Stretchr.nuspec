@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>0.1.1.0</version>
+    <title>Stretchr .NET SDK</title>
+    <authors>Tyler Bunnell</authors>
+    <owners>Stretchr, Inc.</owners>
+    <licenseUrl>https://github.com/stretchr/sdk-dotnet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/stretchr/sdk-dotnet</projectUrl>
+    <iconUrl>http://www.gravatar.com/avatar/253949caeb8fcf0bfe7f1f865415b5b1</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Software development kit for interacting with Stretchr data services. For more information, visit http://www.stretchr.com</description>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright 2014 Stretchr, Inc.</copyright>
+    <tags>Stretchr data cloud stretcher parse json mongo</tags>
+  </metadata>
+</package>

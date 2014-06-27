@@ -2,12 +2,10 @@
 
 The Stretchr .NET allows you to interact with the Stretchr data services using native .NET code.
 
-The Stretchr .NET SDK is a Portable Class Library that supports:
+## Installation
 
-  * .NET Framework 4.5
-  * Silverlight 5
-  * Windows 8
-  * Windows Phone Silverlight 8
+  * (recommended) [NuGet package](https://www.nuget.org/packages/Stretchr/), search for `Stretchr`
+  * You can download the source of this project and include it in your own project
 
 ## Cheatsheet
 
@@ -65,7 +63,7 @@ public class Person : Resource
         set { Set("name", value); }
     }
 
-    public int Age
+    public long Age
     {
         get { return Get("age"); }
         set { Set("age", value); }
